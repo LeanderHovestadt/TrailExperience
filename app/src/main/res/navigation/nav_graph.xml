@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/toursListFragment">
+
+    <fragment
+        android:id="@+id/toursListFragment"
+        android:name="com.example.android.trailexperience.tours.tourslist.ToursListFragment"
+        android:label="ToursListFragment" >
+        <action
+            android:id="@+id/action_toursListFragment_to_toursMapFragment"
+            app:destination="@id/toursMapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_toursListFragment_to_tourDetailFragment"
+            app:destination="@id/tourDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/toursMapFragment"
+        android:name="com.example.android.trailexperience.tours.map.ToursMapFragment"
+        android:label="ToursMapFragment" >
+        <action
+            android:id="@+id/action_toursMapFragment_to_toursListFragment"
+            app:destination="@id/toursListFragment"
+            app:popUpTo="@id/toursListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="tourIds"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourDetailFragment"
+        android:name="com.example.android.trailexperience.tours.detail.TourDetailFragment"
+        android:label="TourDetailFragment" >
+        <argument
+            android:name="tourId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_tourDetailFragment_to_toursListFragment"
+            app:destination="@id/toursListFragment"
+            app:popUpTo="@id/toursListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+</navigation>
