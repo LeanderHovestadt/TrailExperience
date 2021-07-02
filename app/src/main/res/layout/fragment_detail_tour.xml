@@ -55,7 +55,8 @@
             android:type="@{tour}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/difficulty"
-            tools:srcCompat="@drawable/ic_hiking_24" />
+            tools:srcCompat="@drawable/ic_hiking_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/type_text"
@@ -79,7 +80,8 @@
             android:difficulty="@{tour}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image"
-            tools:srcCompat="@drawable/ic_trail_diff_green_24" />
+            tools:srcCompat="@drawable/ic_trail_diff_green_24"
+            tools:ignore="ContentDescription" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"

@@ -18,4 +18,7 @@
     <string name="title_tour_detail_fragment">Details</string>
     <string name="title_maps_fragment">Map</string>
     <string name="title_tours_list_fragment">Trail Experience</string>
+    <string name="show_map">show map</string>
+    <string name="mountainbike">Mountainbike</string>
+    <string name="hike">Hike</string>
 </resources>

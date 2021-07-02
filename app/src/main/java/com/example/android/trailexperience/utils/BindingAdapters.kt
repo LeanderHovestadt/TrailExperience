@@ -1,5 +1,6 @@
 package com.example.android.trailexperience.utils
 
+import android.provider.Settings.Global.getString
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -118,10 +119,10 @@ object BindingAdapters {
             when (it.type) {
                 "mtb" -> {
                     // TODO extract resources
-                    textView.text = "Mountainbike"
+                    textView.text = textView.resources.getString(R.string.mountainbike)
                 }
                 "hike" -> {
-                    textView.text = "Hike"
+                    textView.text = textView.resources.getString(R.string.hike)
                 }
             }
         }

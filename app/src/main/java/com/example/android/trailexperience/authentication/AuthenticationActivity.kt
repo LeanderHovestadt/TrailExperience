@@ -78,7 +78,7 @@ class AuthenticationActivity : AppCompatActivity() {
     }
 
     private fun launchSignInFlow() {
-        Timber.d("launchSignInFlow called")
+        Timber.d("launchSignInFlow called with API_KEY ${getString(R.string.google_maps_key)}")
 
         // Give users the option to sign in / register with their email or Google account. If users
         // choose to register with their email, they will need to create a password as well.
