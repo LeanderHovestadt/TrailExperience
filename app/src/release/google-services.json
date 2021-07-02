@@ -14,19 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "716661120068-61quehp1t0d52mivgudttrnbtl2v8q22.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.android.trailexperience",
-            "certificate_hash": "d34e740ded5c939bacf797dbff04f7ca4eb61adb"
-          }
-        },
-        {
           "client_id": "716661120068-ls22vf69c5b3trcfgvuadkpbllcg2ee5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.android.trailexperience",
             "certificate_hash": "1001c7569354c37f6f08f17b36d4c11be8e130c8"
+          }
+        },
+        {
+          "client_id": "716661120068-v1lo8bqlpf4c302nk4kemd748cth1447.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.trailexperience",
+            "certificate_hash": "d34e740ded5c939bacf797dbff04f7ca4eb61adb"
           }
         },
         {
@@ -36,7 +36,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDC8xO2iQ_Z8YyAMIVyTxh7jAHPFMfF9qw"
+          "current_key": "AIzaSyA1QkUQXiZMge2HXOFPbdL6emYe0prOk80"
         }
       ],
       "services": {
