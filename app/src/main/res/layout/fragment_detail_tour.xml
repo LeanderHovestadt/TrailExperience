@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_25"
             android:layout_marginTop="@dimen/margin_medium"

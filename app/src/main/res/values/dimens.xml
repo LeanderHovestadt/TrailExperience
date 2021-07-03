@@ -10,7 +10,6 @@
     <dimen name="padding_medium">10dp</dimen>
     <dimen name="padding_large">20dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
-    <dimen name="text_size_medium">18sp</dimen>
     <dimen name="margin_big">20dp</dimen>
     <dimen name="margin_medium">15dp</dimen>
     <dimen name="margin_500">500dp</dimen>
@@ -18,4 +17,12 @@
     <dimen name="width_250">250dp</dimen>
     <dimen name="border_width">1dp</dimen>
     <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="mountain_image_size">200dp</dimen>
+    <dimen name="logo_size_small">24dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="radius_circle_view">100dp</dimen>
+    <dimen name="logo_book_size">200dp</dimen>
+    <dimen name="launcher_background_size">108dp</dimen>
+    <dimen name="broken_image_size">200dp</dimen>
 </resources>

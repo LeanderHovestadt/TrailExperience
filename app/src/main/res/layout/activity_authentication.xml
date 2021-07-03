@@ -17,7 +17,7 @@
             android:id="@+id/mountain_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/logo_authentication_height"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/margin_50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
 
         <Button
             android:id="@+id/login_button"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_big"
             android:layout_marginEnd="@dimen/margin_big"

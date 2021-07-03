@@ -1,5 +1,5 @@
-<vector android:height="200dp" android:viewportHeight="100"
-    android:viewportWidth="100" android:width="200dp" xmlns:android="http://schemas.android.com/apk/res/android">
+<vector android:height="@dimen/mountain_image_size" android:viewportHeight="100"
+    android:viewportWidth="100" android:width="@dimen/mountain_image_size" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#3792CF" android:pathData="M64.224,34.453c-0.71,-1.739 -3.173,-1.739 -3.883,0l-24.51,60.039h52.903L64.224,34.453z"/>
     <path android:fillColor="#6AC9CC" android:pathData="M34.616,45.115c-0.584,-1.43 -2.609,-1.43 -3.193,0L11.266,94.492h24.565l9.471,-23.2L34.616,45.115z"/>
     <path android:fillColor="#FEE36F" android:pathData="M50,17.705m-9.036,0a9.036,9.036 0,1 1,18.072 0a9.036,9.036 0,1 1,-18.072 0"/>
