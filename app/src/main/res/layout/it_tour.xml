@@ -30,6 +30,7 @@
                 android:text="@{item.name}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
@@ -52,22 +53,75 @@
                 android:id="@+id/type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:type="@{item}"
-                tools:srcCompat="@drawable/ic_hiking_24"
                 app:layout_constraintBaseline_toBaselineOf="@+id/name"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/difficulty"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@drawable/ic_hiking_24" />
 
             <ImageView
                 android:id="@+id/difficulty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_big"
+                android:layout_marginEnd="10dp"
                 android:difficulty="@{item}"
-                tools:srcCompat="@drawable/ic_trail_diff_green_24"
                 app:layout_constraintBaseline_toBaselineOf="@+id/name"
                 app:layout_constraintEnd_toStartOf="@+id/type"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hm_text"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@drawable/ic_trail_diff_green_24" />
+
+            <ImageView
+                android:id="@+id/hm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/hoehenmeter"
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toStartOf="@+id/hm_text"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/km_text"
+                app:srcCompat="@drawable/ic_baseline_height_24" />
+
+            <TextView
+                android:id="@+id/hm_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:tourHm="@{item.hm}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toStartOf="@+id/difficulty"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hm"
+                tools:text="1200 hm" />
+
+            <TextView
+                android:id="@+id/km_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:tourKm="@{item.km}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toStartOf="@+id/hm"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/km"
+                tools:text="25 km" />
+
+            <ImageView
+                android:id="@+id/km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/kilometer"
+                app:layout_constraintBaseline_toBaselineOf="@+id/name"
+                app:layout_constraintEnd_toStartOf="@+id/km_text"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/name"
+                app:srcCompat="@drawable/routen" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

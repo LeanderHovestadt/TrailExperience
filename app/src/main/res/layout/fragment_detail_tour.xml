@@ -15,88 +15,133 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_25"
-            android:text="@{tour.name}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintStart_toEndOf="@+id/difficulty"
-            app:layout_constraintTop_toBottomOf="@+id/image"
-            tools:text="Name" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="@dimen/match_constraint"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_25"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:text="@{tour.description}"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/type_text"
-            tools:text="Description" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_25"
+                android:text="@{tour.name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintStart_toEndOf="@+id/difficulty"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                tools:text="Name" />
 
-        <ImageView
-            android:id="@+id/type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_25"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:type="@{tour}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/difficulty"
-            tools:srcCompat="@drawable/ic_hiking_24"
-            tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="@dimen/match_constraint"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@{tour.description}"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/type_text"
+                tools:text="Description" />
 
-        <TextView
-            android:id="@+id/type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:typeText="@{tour}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_normal"
-            app:layout_constraintStart_toEndOf="@+id/type"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:text="Hike" />
+            <ImageView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:type="@{tour}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/difficulty"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@drawable/ic_hiking_24" />
 
-        <ImageView
-            android:id="@+id/difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_25"
-            android:layout_marginTop="@dimen/margin_25"
-            android:difficulty="@{tour}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image"
-            tools:srcCompat="@drawable/ic_trail_diff_green_24"
-            tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/type_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal"
+                android:typeText="@{tour}"
+                app:layout_constraintStart_toEndOf="@+id/type"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text="Hike" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image"
-            android:layout_width="@dimen/width_250"
-            android:layout_height="@dimen/width_250"
-            android:layout_marginTop="@dimen/margin_25"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logo_mountains_256"
-            android:contentDescription="@string/image_of_the_tour"
-            android:imageUrl="@{tour.image}"
-            app:civ_border_width="@dimen/border_width"
-            app:civ_border_color="@color/colorPrimaryDark"/>
+            <ImageView
+                android:id="@+id/difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_25"
+                android:difficulty="@{tour}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@drawable/ic_trail_diff_green_24" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/width_250"
+                android:layout_height="@dimen/width_250"
+                android:layout_marginTop="@dimen/margin_25"
+                android:contentDescription="@string/image_of_the_tour"
+                android:imageUrl="@{tour.image}"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="@dimen/border_width"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logo_mountains_256" />
+
+            <ImageView
+                android:id="@+id/hm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/hoehenmeter"
+                app:layout_constraintEnd_toStartOf="@+id/hm_text"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                app:srcCompat="@drawable/ic_baseline_height_24" />
+
+            <TextView
+                android:id="@+id/hm_text"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:tourHm="@{tour.hm}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                tools:text="1200 hm" />
+
+            <TextView
+                android:id="@+id/km_text"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="25dp"
+                android:tourKm="@{tour.km}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hm_text"
+                tools:text="25 km" />
+
+            <ImageView
+                android:id="@+id/km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/kilometer"
+                app:layout_constraintEnd_toStartOf="@+id/km_text"
+                app:layout_constraintTop_toBottomOf="@+id/hm"
+                app:srcCompat="@drawable/routen" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

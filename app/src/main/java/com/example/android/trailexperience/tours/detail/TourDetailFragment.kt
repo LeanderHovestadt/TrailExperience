@@ -18,7 +18,6 @@ class TourDetailFragment : Fragment() {
     //use Koin to retrieve the ViewModel instance
     val _viewModel: TourDetailViewModel by viewModel()
     private lateinit var binding: FragmentDetailTourBinding
-    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,

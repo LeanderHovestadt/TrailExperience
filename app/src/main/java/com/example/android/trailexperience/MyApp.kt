@@ -8,6 +8,7 @@ import com.example.android.trailexperience.tours.data.remote.ToursRemoteDataSour
 import com.example.android.trailexperience.tours.data.remote.ToursRemoteService
 import com.example.android.trailexperience.tours.detail.TourDetailViewModel
 import com.example.android.trailexperience.tours.map.ToursMapViewModel
+import com.example.android.trailexperience.tours.add.ToursAddViewModel
 import com.example.android.trailexperience.tours.tourslist.ToursListViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -43,6 +44,11 @@ class MyApp : Application() {
                 TourDetailViewModel(get(),
                 get() as ToursLocalDataSource)
             }
+
+            viewModel {
+                ToursAddViewModel(get(),
+                get() as ToursRemoteDataSource)
+            }
             //Declare singleton definitions to be later injected using by inject()
 
             // ToursLocalRepository
@@ -55,7 +61,7 @@ class MyApp : Application() {
             }
             single { LocalDB.createToursDao(this@MyApp) }
             single {
-                ToursRemoteService(get())
+                ToursRemoteService()
             }
             single<ToursRemoteDataSource> { get<ToursRemoteService>() }
         }

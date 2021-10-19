@@ -22,6 +22,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_toursListFragment_to_toursAddFragment"
+            app:destination="@id/toursAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/toursMapFragment"
@@ -55,5 +58,41 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/toursAddFragment"
+        android:name="com.example.android.trailexperience.tours.add.ToursAddFragment"
+        android:label="ToursAddFragment" >
+        <action
+            android:id="@+id/action_toursAddFragment_to_toursListFragment"
+            app:destination="@id/toursListFragment"
+            app:popUpTo="@id/toursListFragment" />
+        <argument
+            android:name="tour"
+            app:argType="com.example.android.trailexperience.tours.data.objects.TourItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_toursAddFragment_to_selectLocationFragment"
+            app:destination="@id/selectLocationFragment" />
+        <argument
+            android:name="location"
+            app:argType="com.google.android.gms.maps.model.LatLng"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectLocationFragment"
+        android:name="com.example.android.trailexperience.tours.add.selectlocation.SelectLocationFragment"
+        android:label="SelectLocationFragment" >
+        <action
+            android:id="@+id/action_selectLocationFragment_to_toursAddFragment"
+            app:destination="@id/toursAddFragment"
+            app:popUpTo="@id/toursAddFragment" />
+        <argument
+            android:name="location"
+            app:argType="com.google.android.gms.maps.model.LatLng"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

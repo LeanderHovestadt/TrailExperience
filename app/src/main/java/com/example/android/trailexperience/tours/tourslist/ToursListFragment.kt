@@ -11,11 +11,13 @@ import com.example.android.trailexperience.R
 import com.example.android.trailexperience.authentication.AuthenticationActivity
 import com.example.android.trailexperience.databinding.FragmentToursListBinding
 import com.example.android.trailexperience.tours.data.objects.TourItem
+import com.example.android.trailexperience.tours.data.objects.Type
 import com.example.android.trailexperience.utils.EspressoIdlingResource
 import com.example.android.trailexperience.utils.setDisplayHomeAsUpEnabled
 import com.example.android.trailexperience.utils.setTitle
 import com.example.android.trailexperience.utils.setup
 import com.firebase.ui.auth.AuthUI
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -47,9 +49,11 @@ class ToursListFragment : Fragment() {
         }
 
         _viewModel.remoteToursList.observe(viewLifecycleOwner, {
+            Timber.i("remote tours have been updated, fetched ${it.size} items")
             binding.refreshLayout.isRefreshing = false
-            _viewModel.loadTours()
         })
+
+        _viewModel.reset()
 
         return binding.root
     }
@@ -59,9 +63,37 @@ class ToursListFragment : Fragment() {
 
         setupRecyclerView()
 
-        binding.addReminderFAB.setOnClickListener {
+        binding.mapFab.setOnClickListener {
             navigateToMapFragment()
         }
+
+        binding.menuFab.setOnClickListener {
+            _viewModel.toggleFabMenu()
+        }
+
+        binding.addFab.setOnClickListener {
+            navigateToAddFragment()
+        }
+
+        binding.chipgroupType.setOnCheckedChangeListener { _: ChipGroup, i: Int ->
+            when (i) {
+                R.id.chip_climb -> _viewModel.updateTypeFilter(Type.Climb)
+                R.id.chip_mtb -> _viewModel.updateTypeFilter(Type.Mountainbike)
+                R.id.chip_hike -> _viewModel.updateTypeFilter(Type.Hike)
+                View.NO_ID -> _viewModel.updateTypeFilter(Type.All)
+            }
+        }
+
+        _viewModel.showFabMenu.observe(viewLifecycleOwner, {
+            if (it) {
+                openFabMenu()
+            }
+            else {
+                closeFabMenu()
+            }
+        })
+
+
         navController = findNavController()
 
         _viewModel.showSnackBar.observe(viewLifecycleOwner, Observer {
@@ -79,8 +111,52 @@ class ToursListFragment : Fragment() {
         })
 
         _viewModel.remoteToursList.observe(viewLifecycleOwner, { _viewModel.saveTours(it) })
+        _viewModel.remoteUpdateRequired.observe(viewLifecycleOwner, {
+            if (it) {
+                _viewModel.fetchTours()
+            }
+        })
+        _viewModel.localUpdateRequired.observe(viewLifecycleOwner, {
+            if (it) {
+                binding.chipgroupType.clearCheck()
+                _viewModel.loadTours(Type.All)
+            }
+        })
 
-        _viewModel.loadTours()
+        _viewModel.loadTours(null)
+    }
+
+    private fun closeFabMenu() {
+        Timber.d("closeFabMenu called")
+
+        binding.addFab.bringToFront()
+        binding.mapFab.bringToFront()
+        binding.menuFab.bringToFront()
+
+        binding.invalidateAll()
+
+        binding.mapFab.animate().translationY(0F);
+        binding.addFab.animate().translationY(0F);
+    }
+
+    private fun openFabMenu() {
+        Timber.d("openFabMenu called")
+
+        binding.addFab.visibility = View.VISIBLE
+        binding.mapFab.visibility = View.VISIBLE
+
+        binding.addFab.bringToFront()
+        binding.mapFab.bringToFront()
+        binding.menuFab.bringToFront()
+
+        binding.invalidateAll()
+
+        binding.mapFab.animate().translationY(-resources.getDimension(R.dimen.standard_55));
+        binding.addFab.animate().translationY(-resources.getDimension(R.dimen.standard_105));
+    }
+
+    private fun navigateToAddFragment() {
+        navController.navigate(ToursListFragmentDirections.actionToursListFragmentToToursAddFragment())
     }
 
     private fun navigateToMapFragment() {

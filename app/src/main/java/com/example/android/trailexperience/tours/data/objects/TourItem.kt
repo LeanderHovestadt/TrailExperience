@@ -12,6 +12,8 @@ data class TourItem(
     var difficulty: String?,
     var image: String?,
     var location: LatLng?,
-    var type: String?,
+    var type: Type?,
+    var hm: Long?,
+    var km: Long?,
     var id: String?
 ) : Serializable

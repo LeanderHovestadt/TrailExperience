@@ -25,4 +25,8 @@
     <dimen name="logo_book_size">200dp</dimen>
     <dimen name="launcher_background_size">108dp</dimen>
     <dimen name="broken_image_size">200dp</dimen>
+    <dimen name="margin_fab_mini">20dp</dimen>
+    <dimen name="standard_55">55dp</dimen>
+    <dimen name="standard_105">105dp</dimen>
+    <dimen name="image_size_small">100dp</dimen>
 </resources>

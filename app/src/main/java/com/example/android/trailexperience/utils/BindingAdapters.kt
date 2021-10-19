@@ -2,11 +2,14 @@ package com.example.android.trailexperience.utils
 
 import android.provider.Settings.Global.getString
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
+import androidx.core.text.isDigitsOnly
 import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,6 +17,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.android.trailexperience.R
 import com.example.android.trailexperience.tours.base.BaseRecyclerViewAdapter
 import com.example.android.trailexperience.tours.data.objects.TourItem
+import com.example.android.trailexperience.tours.data.objects.Type
+import com.google.android.material.chip.ChipGroup
 import timber.log.Timber
 
 
@@ -86,7 +91,7 @@ object BindingAdapters {
         item?.let {
             item.type?.let {
                 when (item.type) {
-                    "mtb" -> {
+                    Type.Mountainbike -> {
                         imageView.setImageDrawable(
                             ResourcesCompat.getDrawable(
                                 imageView.resources,
@@ -96,7 +101,7 @@ object BindingAdapters {
                         )
                         imageView.contentDescription = "Mountainbike tour"
                     }
-                    "hike" -> {
+                    Type.Hike -> {
                         imageView.setImageDrawable(
                             ResourcesCompat.getDrawable(
                                 imageView.resources,
@@ -105,6 +110,16 @@ object BindingAdapters {
                             )
                         )
                         imageView.contentDescription = "Hiking tour"
+                    }
+                    Type.Climb -> {
+                        imageView.setImageDrawable(
+                            ResourcesCompat.getDrawable(
+                                imageView.resources,
+                                R.drawable.ic_climbing_24,
+                                null
+                            )
+                        )
+                        imageView.contentDescription = "Climbing tour"
                     }
                 }
             }
@@ -117,13 +132,16 @@ object BindingAdapters {
     fun setTypeText(textView: TextView, item: TourItem?) {
         item?.let { it ->
             when (it.type) {
-                "mtb" -> {
-                    // TODO extract resources
+                Type.Mountainbike -> {
                     textView.text = textView.resources.getString(R.string.mountainbike)
                 }
-                "hike" -> {
+                Type.Hike -> {
                     textView.text = textView.resources.getString(R.string.hike)
                 }
+                Type.Climb -> {
+                    textView.text = textView.resources.getString(R.string.climb)
+                }
+                else -> Timber.e("Could not set tour type.")
             }
         }
     }
@@ -152,8 +170,8 @@ object BindingAdapters {
     @BindingAdapter("android:imageUrl")
     @JvmStatic
     fun bindImage(imgView: ImageView, imgUrl: String?) {
-        imgUrl?.let {
-            val imgUri = it.toUri().buildUpon().scheme("https").build()
+        if (imgUrl != null) {
+            val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
             Glide.with(imgView.context)
                 .load(imgUri)
                 .apply(
@@ -162,6 +180,113 @@ object BindingAdapters {
                         .error(R.drawable.ic_baseline_broken_image_256)
                 )
                 .into(imgView)
+        }
+        else{
+            imgView.setImageDrawable(ResourcesCompat.getDrawable(imgView.resources, R.drawable.ic_logo_mountains_256, null))
+        }
+    }
+
+    @BindingAdapter("android:tourType")
+    @JvmStatic
+    fun setTourType(chipGroup: ChipGroup, tourType: Type?) {
+        tourType?.let {
+            when (it) {
+                Type.Mountainbike -> chipGroup.check(R.id.chip_mtb)
+                Type.Hike -> chipGroup.check(R.id.chip_hike)
+                Type.Climb -> chipGroup.check(R.id.chip_climb)
+                else -> null
+            }
+        }
+    }
+
+    @InverseBindingAdapter(attribute = "android:tourType")
+    @JvmStatic
+    fun getTourType(chipGroup: ChipGroup) : Type? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chip_mtb -> Type.Mountainbike
+            R.id.chip_hike -> Type.Hike
+            R.id.chip_climb -> Type.Climb
+            else -> null
+        }
+
+    }
+
+    @BindingAdapter("android:tourDifficulty")
+    @JvmStatic
+    fun setTourDifficulty(chipGroup: ChipGroup, tourDifficulty: String?) {
+        tourDifficulty?.let {
+            when (it) {
+                "easy" -> chipGroup.check(R.id.chip_easy)
+                "medium" -> chipGroup.check(R.id.chip_medium)
+                "hard" -> chipGroup.check(R.id.chip_hard)
+            }
+        }
+    }
+
+
+    @InverseBindingAdapter(attribute = "android:tourDifficulty")
+    @JvmStatic
+    fun getTourDifficulty(chipGroup: ChipGroup): String? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chip_easy -> "easy"
+            R.id.chip_medium -> "medium"
+            R.id.chip_hard -> "hard"
+            else -> null
+        }
+    }
+
+    @BindingAdapter("android:location")
+    @JvmStatic
+    fun setLocation(textView: TextView, tour: TourItem?) {
+        tour?.let {
+            tour.location?.let {
+                textView.text = textView.context.getString(R.string.location_format)
+                    .format(it.latitude, it.longitude)
+            }
+        }
+    }
+
+    @BindingAdapter("android:tourHm")
+    @JvmStatic
+    fun EditText.setTourHm(tourHm: Long?) {
+        tourHm?.let {
+            setText(it.toString())
+        }
+    }
+
+    @InverseBindingAdapter(attribute = "android:tourHm", event = "android:textAttrChanged")
+    @JvmStatic
+    fun EditText.getTourHm(): Long {
+        return text.toString().toLongOrNull() ?: 0
+    }
+
+    @InverseBindingAdapter(attribute = "android:tourKm", event = "android:textAttrChanged")
+    @JvmStatic
+    fun EditText.getTourKm(): Long {
+        return text.toString().toLongOrNull() ?: 0
+    }
+
+    @BindingAdapter("android:tourKm")
+    @JvmStatic
+    fun EditText.setTourKm(tourKm: Long?) {
+        tourKm?.let {
+            setText(it.toString())
+        }
+    }
+
+    @BindingAdapter("android:tourHm")
+    @JvmStatic
+    fun TextView.setTourHm(tourHm: Long?) {
+        tourHm?.let {
+            text = context.getString(R.string.hm_format).format(it)
+        }
+    }
+
+    @BindingAdapter("android:tourKm")
+    @JvmStatic
+    fun TextView.setTourKm(tourKm: Long?) {
+        tourKm?.let {
+            text = context.getString(R.string.km_format).format(it)
         }
     }
 }

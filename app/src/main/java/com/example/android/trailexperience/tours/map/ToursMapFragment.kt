@@ -5,21 +5,19 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import com.example.android.trailexperience.R
 import com.example.android.trailexperience.databinding.FragmentMapsBinding
 import com.example.android.trailexperience.tours.data.objects.TourItem
+import com.example.android.trailexperience.tours.data.objects.Type
 import com.example.android.trailexperience.utils.setDisplayHomeAsUpEnabled
 import com.example.android.trailexperience.utils.setTitle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +30,6 @@ class ToursMapFragment : Fragment(), OnMapReadyCallback {
     //use Koin to retrieve the ViewModel instance
     val _viewModel: ToursMapViewModel by viewModel()
     private lateinit var binding: FragmentMapsBinding
-    private lateinit var navController: NavController
     private lateinit var mMap: GoogleMap
 
     override fun onCreateView(
@@ -97,17 +94,18 @@ class ToursMapFragment : Fragment(), OnMapReadyCallback {
 
             if (tour.location != null && tour.name != null && tour.difficulty != null && tour.type != null){
                 val difficultyText = when(tour.difficulty) {
-                    "easy" -> "Easy"
-                    "medium" -> "Advanced"
-                    "hard" -> "Expert"
+                    "easy" -> getString(R.string.difficulty_easy_text)
+                    "medium" -> getString(R.string.difficulty_medium_text)
+                    "hard" -> getString(R.string.difficulty_hard_text)
                     else -> {
                         Timber.e("Could not parse difficulty ${tour.difficulty}")
                         "Unknown"
                     }
                 }
                 val typeText = when(tour.type) {
-                    "mtb" -> "mountainbike"
-                    "hike" -> "hiking"
+                    Type.Mountainbike -> getString(R.string.mountainbiking)
+                    Type.Hike -> getString(R.string.hiking)
+                    Type.Climb -> getString(R.string.climbing)
                     else -> {
                         Timber.e("Could not parse type ${tour.type}")
                         "unknown"

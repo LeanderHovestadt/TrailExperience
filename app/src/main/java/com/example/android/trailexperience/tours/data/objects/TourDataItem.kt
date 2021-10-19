@@ -24,11 +24,13 @@ import java.util.*
 @Entity(tableName = "tours")
 data class TourDataItem(
     @ColumnInfo(name = "name") var name: String?,
-    @ColumnInfo(name = "type") var type: String?,
+    @ColumnInfo(name = "type") var type: Type?,
     @ColumnInfo(name = "description") var description: String?,
     @ColumnInfo(name = "difficulty") var difficulty: String?,
     @ColumnInfo(name = "image") var image: String?,
     @ColumnInfo(name = "latitude") var latitude: Double?,
     @ColumnInfo(name = "longitude") var longitude: Double?,
+    @ColumnInfo(name = "hm") var hm: Long?,
+    @ColumnInfo(name = "km") var km: Long?,
     @PrimaryKey @ColumnInfo(name = "entry_id") val id: String = UUID.randomUUID().toString()
 )

@@ -1,5 +1,7 @@
 package com.example.android.trailexperience.tours.data.local
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.android.trailexperience.tours.data.objects.TourDataItem
 import com.example.android.trailexperience.utils.wrapEspressoIdlingResource
 import com.example.android.trailexperience.tours.data.objects.Result
@@ -22,6 +24,10 @@ class ToursLocalRepository(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ToursLocalDataSource {
 
+    private var _updateRequired = MutableLiveData<Boolean>()
+    override val updateRequired : LiveData<Boolean>
+        get() = _updateRequired
+
     /**
      * Get the tours list from the local db
      * @return Result the holds a Success with all the tours or an Error object with the error message
@@ -42,10 +48,13 @@ class ToursLocalRepository(
      * Insert a reminder in the db.
      * @param reminder the reminder to be inserted
      */
-    override suspend fun saveTour(tour: TourDataItem) = wrapEspressoIdlingResource {
+    override suspend fun saveTours(tours: List<TourDataItem>) = wrapEspressoIdlingResource {
         withContext(ioDispatcher) {
-            Timber.d( "saveTour is called")
-            toursDao.saveTour(tour)
+            Timber.d( "saveTours is called")
+            tours.forEach { tour ->
+                toursDao.saveTour(tour)
+            }
+            _updateRequired.postValue(true)
         }
     }
 
