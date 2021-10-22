@@ -9,8 +9,8 @@
             name="viewModel"
             type="com.example.android.trailexperience.tours.tourslist.ToursListViewModel" />
         <variable
-            name="tour"
-            type="com.example.android.trailexperience.tours.data.objects.TourItem" />
+            name="filterType"
+            type="com.example.android.trailexperience.tours.data.objects.Type" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -26,12 +26,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipgroup_type"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_50"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="@dimen/margin_50"
-                android:tourType="@{tour.type}"
+                android:tourType="@{filterType}"
                 app:chipSpacingHorizontal="@dimen/margin_25"
                 app:selectionRequired="false"
                 app:singleLine="true"
@@ -121,7 +120,7 @@
                     android:clickable="true"
                     android:contentDescription="@string/map_fab"
                     android:visibility="gone"
-                    app:backgroundTint="@color/main_dark_blue"
+                    app:backgroundTint="@color/second_four"
                     app:fabSize="mini"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +134,7 @@
                     android:layout_marginBottom="@dimen/margin_fab_mini"
                     android:clickable="true"
                     android:visibility="gone"
-                    app:backgroundTint="@color/main_dark_blue"
+                    app:backgroundTint="@color/second_four"
                     app:fabSize="mini"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

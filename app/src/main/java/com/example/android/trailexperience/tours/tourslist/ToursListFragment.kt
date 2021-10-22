@@ -118,12 +118,11 @@ class ToursListFragment : Fragment() {
         })
         _viewModel.localUpdateRequired.observe(viewLifecycleOwner, {
             if (it) {
-                binding.chipgroupType.clearCheck()
-                _viewModel.loadTours(Type.All)
+                _viewModel.loadTours()
             }
         })
 
-        _viewModel.loadTours(null)
+        _viewModel.loadTours()
     }
 
     private fun closeFabMenu() {

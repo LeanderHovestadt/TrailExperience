@@ -58,7 +58,7 @@ class ToursListViewModel(app: Application, private val localDataSource: ToursLoc
      * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
      * or show error if any
      */
-    fun loadTours(type: Type?) {
+    fun loadTours() {
         _showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
@@ -67,9 +67,10 @@ class ToursListViewModel(app: Application, private val localDataSource: ToursLoc
             when (result) {
                 is Result.Success<*> -> {
                     val filteredList = mutableListOf<TourDataItem>()
+                    Timber.i("typeFilter is ${typeFilter.value}")
 
                     (result.data as List<TourDataItem>).forEach { tour ->
-                        when (type ?: typeFilter.value ?: Type.All) {
+                        when (val type = typeFilter.value ?: Type.All) {
                             Type.All -> filteredList.add(tour)
                             else -> {
                                 if (tour.type == type) {
@@ -135,6 +136,7 @@ class ToursListViewModel(app: Application, private val localDataSource: ToursLoc
     }
 
     fun updateTypeFilter(type: Type) {
-        loadTours(type)
+        _typeFilter.value = type
+        loadTours()
     }
 }
